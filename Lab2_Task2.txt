@@ -1,0 +1,74 @@
+#/bin/bash
+#Edward Riley
+
+letter_writer()
+{
+
+cd /home/$name/Documents/
+chmod 777 welcome.txt
+echo "Dear $fname,
+
+Welcome to Initech Corporation! We’re so happy to have you in the $dept Department as a $jtitle. Please don’t forget to complete your TPS Reports in a timely manner.
+
+Sincerely,
+
+Bill Lumbergh" >> /home/$name/Documents/welcome.txt
+
+}
+
+file_system_writer()
+{
+
+mkdir /home/$name/Desktop
+mkdir /home/$name/Documents
+mkdir /home/$name/Pictures
+mkdir /home/$name/Downloads
+
+cp /home/student/Pictures/ackbar.png /home/$name/Pictures
+
+touch /home/$name/Documents/welcome.txt
+}
+
+permission_editor()
+{
+
+chmod 755 /home/$name/
+chmod 755 /home/$name/Desktop
+chmod 755 /home/$name/Documents
+chmod 755 /home/$name/Pictures
+chmod 755 /home/$name/Downloads
+
+chmod 644 /home/$name/Pictures/ackbar.png
+
+chown $name:$name /home/$name/Desktop
+chown $name:$name /home/$name/Documents
+chown $name:$name /home/$name/Pictures
+chown $name:$name /home/$name/Downloads
+chown $name:$name /home/$name/Documents/welcome.txt
+chown $name:$name /home/$name/Pictures/ackbar.png
+}
+
+
+rep='y'
+while [ $rep = 'y' ]
+do
+
+read -p 'Username: ' usname
+
+read -p 'Full Name: ' fname lname
+
+read -p 'Department: ' dept
+
+read -p 'Job Title: ' jtitle
+	
+useradd $name
+
+echo User $name added!
+
+file_system_writer
+permission_editor
+letter_writer
+
+read -p 'Would you like to add another user? (y/n): ' rep
+
+done
